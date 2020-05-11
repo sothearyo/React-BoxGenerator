@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import BoxForm from './components/BoxForm';
+import BoxDisplay from './components/BoxDisplay';
+
 
 function App() {
+  const [colorsList, setColorsList] = useState([]);
+
+  const addNewColor = (newColor) => {
+    setColorsList([...colorsList, newColor]);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BoxForm onNewColor={addNewColor}/>
+      <BoxDisplay colors={colorsList}/>
     </div>
   );
 }
